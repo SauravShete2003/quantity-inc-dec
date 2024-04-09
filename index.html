@@ -1,150 +1,173 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quantity inc/dec</title>
     <style>
+        body {
 
-        body{
-            
-            background-image: linear-gradient( 110.3deg,  rgba(73,93,109,1) 4.3%, rgba(49,55,82,1) 96.7% );
+            background-image: linear-gradient(110.3deg, rgba(73, 93, 109, 1) 4.3%, rgba(49, 55, 82, 1) 96.7%);
             height: 85vh;
             font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
         }
 
-        .product-container{
+        .product-container {
             height: 430px;
             width: 330px;
             margin: 80px auto;
             border: 1px solid black;
             border-radius: 15px;
-           background-color: white;
+            background-color: white;
         }
-        .btn-container{
-        
+
+        .btn-container {
+
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        .sign-btn{
+        .sign-btn {
             display: inline-block;
-           font-size: 20px;
-           margin:10px;
-           height: 25px;
-           cursor: pointer;
-           width: 25px;
+            font-size: 20px;
+            margin: 10px;
+            height: 25px;
+            cursor: pointer;
+            width: 25px;
         }
+
         /* .input{
            
             
         } */
 
-        .product-img{
+        .product-img {
             height: 170px;
             width: 250px;
             border-radius: 20px;
             margin-left: 40px;
-           
-            
+
+
         }
 
-        .heading-title{
+        .heading-title {
             display: block;
             text-align: center;
             font-size: 22px;
             margin: 5px;
         }
 
-        .title-des{
-         display: block;
-         text-align: center;
+        .title-des {
+            display: block;
+            text-align: center;
         }
 
-        .price{
+        .price {
             display: block;
             text-align: center;
             margin: 10px;
-           font-size: 20px; 
+            font-size: 20px;
         }
 
-        .button{
+        .button {
             font-size: 15px;
             /* width: 80px; */
-            padding: 12px;
+            padding: 10px;
             border: none;
             border-radius: 20px;
-           background-color: black;
-           color: white;
+            background-color: black;
+            color: white;
             margin-left: 120px;
             transition: 0.4s;
-            
+
         }
-        .button:hover{
+
+        .button:hover {
             background-color: black;
             border: none;
             color: white;
         }
+
         @media screen and (max-width: 600px) {
             .product-container {
                 width: 90%;
             }
 
             .btn-container {
-                margin-left: auto;  
+                margin-left: auto;
                 margin-right: auto;
-                text-align: center; 
+                text-align: center;
             }
 
             .button {
-                margin-left: auto; 
+                margin-left: auto;
                 margin-right: auto;
+                display: flex;
+                justify-content: center;
             }
         }
     </style>
 </head>
+
 <body>
     <div class="product-container">
 
-        <img src="royal-enfield.webp" class="product-img" >
+        <img src="royal-enfield.webp" class="product-img">
 
         <span class="heading-title">GT 650</span>
 
-        <span class="title-des"> Royal Enfield's legendary parallel twin-cylinder engine, backed with an air/oil-cooled parallel twin configuration.</span>
+        <span class="title-des"> Royal Enfield's legendary parallel twin-cylinder engine, backed with an air/oil-cooled
+            parallel twin configuration.</span>
 
-        <span class="price" id="pricetext">1 X 3,19,000 </span>
+        <span class="price" id="pricetext">1 X 319000 </span>
 
-        <span class="price" id="pricetotal">Total : ₹ 3,19,000 /-</span>
+        <span class="price" id="pricetotal">Total : ₹ 319000 /-</span>
 
-     <div class="btn-container">
+        <div class="btn-container">
 
-        <img src="minus (1).png" class="sign-btn" onclick="dec()">
+            <img src="minus (1).png" class="sign-btn" onclick="dec()">
 
-       <span class="input" id="quantitytext">10</span>
+            <span class="input" id="quantitytext">1</span>
 
-       <img src="add (1).png" class="sign-btn" onclick="inc()">
-     </div> 
+            <img src="add (1).png" class="sign-btn" onclick="inc()">
+        </div>
 
-       <button class="button">Buy Now</button>
+        <button class="button">Buy Now</button>
 
     </div>
     <script>
-       function inc(){
-        const quantitytext = document.getElementById("quantitytext");
-        let quantity = parseInt(quantitytext.innerText);
-        quantitytext.innerText=++quantity;
-        console.log(quantitytext.innerText);
-        
-       }
+function inc() {
+    const quantitytext = document.getElementById("quantitytext");
+    let quantity = parseInt(quantitytext.innerText);
+    const pricetext = document.getElementById("pricetext");
+    const pricetotal = document.getElementById("pricetotal")
+    
+    if (quantity < 10) {
+        quantitytext.innerText = ++quantity;
+    } else {
+        alert("You can't buy more than 10");
+    }
+    pricetext.innerText = (`${quantity} X 319000 `) 
+    pricetotal.innerText = (`Total : ₹${quantity * 319000}/-`) 
+}
 
-       function dec(){
-        const quantitytext = document.getElementById("quantitytext")
-       let quantity = parseInt (quantitytext.innerText)
-       quantitytext.innerText=--quantity;
-       console.log(quantitytext.innerText)
+function dec() {
+    const quantitytext = document.getElementById("quantitytext");
+    let quantity = parseInt(quantitytext.innerText);
+    const pricetext = document.getElementById("pricetext");
 
-       }
+    if (quantity > 1) {
+        quantitytext.innerText = --quantity;
+    } else {
+        alert("You can't buy less than 1");
+    }
+    pricetext.innerText = (`${quantity} X 3,19,000 `)  
+    pricetotal.innerText = (`Total : ₹${quantity * 319000}/-`)
+}
+
     </script>
 </body>
+
 </html>
